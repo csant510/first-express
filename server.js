@@ -1,8 +1,17 @@
 //load express module
 const express = require('express');
+const path = require('path')
 
 //create out express app
 const app = express();
+ // Configure the app (app.set)
+     app.set('view engine', 'ejs');
+     app.set('views',path.join(__dirname, 'views'))
+ 	
+ // Mount middleware (app.use)
+ 	
+ 	
+ // Mount routes
 
  // Define a "root" route directly on app
  app.get('/', function (req, res) {
@@ -10,8 +19,8 @@ const app = express();
   });
 
   app.get('/home',function(req, res){
-      res.send('<h1>Home Page</h1>')
-  })
+      res.render('home',{cohort:'sei'});
+  });
 
 
 // Tell the app to listen on port 3000
