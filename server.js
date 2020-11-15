@@ -2,6 +2,9 @@
 const express = require('express');
 const path = require('path')
 
+ // require the todo "database"
+ const todoDb = require('./data/todo-db');
+
 //create out express app
 const app = express();
  // Configure the app (app.set)
@@ -15,11 +18,17 @@ const app = express();
 
  // Define a "root" route directly on app
  app.get('/', function (req, res) {
-    res.send('<h1>Hello Express!</h1>');
+    res.redirect('/home')
   });
 
   app.get('/home',function(req, res){
       res.render('home',{cohort:'sei'});
+  });
+
+  app.get('/todos', function(req,res){
+      res.render('todos/index',{
+          todos: todoDb.getAll()
+      });
   });
 
 
